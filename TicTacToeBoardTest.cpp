@@ -14,9 +14,113 @@ class TicTacToeBoardTest : public ::testing::Test
 		virtual void TearDown(){} //clean up after each test, (before destructor) 
 };
 
-/* EXAMPLE TEST FORMAT
-TEST(TicTacToeBoardTest, unitTestName)
+
+//EXAMPLE TEST FORMAT
+TEST(TicTacToeBoardTest, toggleTurn)
 {
-	ASSERT_TRUE(true);
+	TicTacToeBoard obj;
+	Piece output = obj.toggleTurn();
+	ASSERT_EQ(output,'O');
+	//ASSERT_TRUE(true);
 }
-*/
+
+TEST(TicTacToeBoardTest, placePiece)
+{
+	TicTacToeBoard obj;
+	Piece output = obj.placePiece(0,0);
+	ASSERT_EQ(output,'X');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, placePiece2_toggle)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(0,0);
+	Piece output = obj.placePiece(0,1);
+	ASSERT_EQ(output,'O');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, placePiece2_Invalid)
+{
+	TicTacToeBoard obj;
+	Piece output = obj.placePiece(4,1);
+	ASSERT_EQ(output,'?');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getPiece)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(1,1);
+	Piece output = obj.getPiece(1,1);
+	ASSERT_EQ(output,'X');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getPiece_Blank)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(1,1);
+	Piece output = obj.getPiece(2,1);
+	ASSERT_EQ(output,' ');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getPiece_Invalid)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(1,1);
+	Piece output = obj.getPiece(4,1);
+	ASSERT_EQ(output,'?');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getWinner_Invalid)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(1,1);
+	Piece output = obj.getWinner();
+	ASSERT_EQ(output,'?');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getWinner_Win)
+{
+	TicTacToeBoard obj;
+    for(int i=0; i<3; i++){
+    	for(int j=0; j<3; j++){
+    		obj.placePiece(i,j);
+    	}
+    }
+    /*
+    X0X
+    0X0
+    X0X
+    */
+	Piece output = obj.getWinner();
+	ASSERT_EQ(output,'X');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getWinner_Noone)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(1,1);
+	obj.placePiece(0,0);
+	obj.placePiece(0,2);
+	obj.placePiece(2,0);
+	obj.placePiece(1,0);
+	obj.placePiece(1,2);
+	obj.placePiece(0,1);
+	obj.placePiece(2,1);
+	obj.placePiece(2,2);
+	/*
+	0XX
+	XX0
+	00X
+	*/
+	Piece output = obj.getWinner();
+	ASSERT_EQ(output,' ');
+	//ASSERT_TRUE(true);
+}
