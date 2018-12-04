@@ -85,7 +85,51 @@ TEST(TicTacToeBoardTest, getWinner_Invalid)
 	//ASSERT_TRUE(true);
 }
 
-TEST(TicTacToeBoardTest, getWinner_Win)
+TEST(TicTacToeBoardTest, getWinner_Win_Row)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(0,0);
+	obj.placePiece(1,0);
+	obj.placePiece(0,1);
+	obj.placePiece(1,1);
+	obj.placePiece(0,2);
+	obj.placePiece(2,0);
+	obj.placePiece(1,2);
+	obj.placePiece(2,2);
+	obj.placePiece(2,1);
+    /*
+    xxx
+    00x
+    0x0
+    */
+	Piece output = obj.getWinner();
+	ASSERT_EQ(output,'X');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getWinner_Win_Column)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(0,0);
+	obj.placePiece(0,1);
+	obj.placePiece(1,0);
+	obj.placePiece(0,2);
+	obj.placePiece(2,0);
+	obj.placePiece(1,1);
+	obj.placePiece(1,2);
+	obj.placePiece(2,2);
+	obj.placePiece(2,1);
+    /*
+	x00
+	x0x
+	xx0
+    */
+	Piece output = obj.getWinner();
+	ASSERT_EQ(output,'X');
+	//ASSERT_TRUE(true);
+}
+
+TEST(TicTacToeBoardTest, getWinner_Win_Diagonol)
 {
 	TicTacToeBoard obj;
     for(int i=0; i<3; i++){
@@ -103,7 +147,7 @@ TEST(TicTacToeBoardTest, getWinner_Win)
 	//ASSERT_TRUE(true);
 }
 
-TEST(TicTacToeBoardTest, getWinner_Noone)
+TEST(TicTacToeBoardTest, getWinner_None)
 {
 	TicTacToeBoard obj;
 	obj.placePiece(1,1);
