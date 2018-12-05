@@ -51,14 +51,14 @@ TEST(TicTacToeBoardTest, placePiece_Already)
 TEST(TicTacToeBoardTest, placePiece_Out_Row)
 {
 	TicTacToeBoard obj;
-	Piece output = obj.placePiece(4,1);
+	Piece output = obj.placePiece(3,1);
 	ASSERT_EQ(output,'?');
 	//ASSERT_TRUE(true);
 }
 TEST(TicTacToeBoardTest, placePiece_Out_Col)
 {
 	TicTacToeBoard obj;
-	Piece output = obj.placePiece(1,4);
+	Piece output = obj.placePiece(1,3);
 	ASSERT_EQ(output,'?');
 	//ASSERT_TRUE(true);
 }
@@ -85,7 +85,7 @@ TEST(TicTacToeBoardTest, getPiece_Invalid)
 {
 	TicTacToeBoard obj;
 	obj.placePiece(1,1);
-	Piece output = obj.getPiece(4,1);
+	Piece output = obj.getPiece(3,1);
 	ASSERT_EQ(output,'?');
 	//ASSERT_TRUE(true);
 }

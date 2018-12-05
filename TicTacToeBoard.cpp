@@ -37,7 +37,7 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  if(row > 3 || column > 3){
+  if(row > 2 || column > 2){
     return Invalid;
   }
   if(board[row][column] == Blank){
@@ -54,7 +54,7 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  if(row > 3 || column > 3){
+  if(row > 2 || column > 2){
     return Invalid;
   }
   return board[row][column];
